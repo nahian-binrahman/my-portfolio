@@ -68,7 +68,7 @@ export default function AboutPage() {
                             <div className="relative aspect-square rounded-3xl overflow-hidden border-8 border-white dark:border-slate-800 shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500">
                                 <div className="absolute inset-0 bg-indigo-500/10 mix-blend-overlay z-10" />
                                 <Image
-                                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop"
+                                    src="/profile-pic.png"
                                     alt="Nahian Bin Rahman"
                                     fill
                                     className="object-cover"
