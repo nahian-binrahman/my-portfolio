@@ -3,7 +3,7 @@ import { Container, Section } from "@/components/ui/structure";
 import { MDX } from "@/components/ui/mdx";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github, ArrowLeft, PlayCircle } from "lucide-react";
+import { ExternalLink, Github, ArrowLeft, PlayCircle, Globe } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
