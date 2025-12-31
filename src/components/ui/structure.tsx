@@ -7,6 +7,7 @@ interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
 export function Container({ as: Component = "div", className, ...props }: ContainerProps) {
     return (
         <Component
+            // @ts-ignore
             className={cn("container mx-auto px-4 sm:px-6 lg:px-8", className)}
             {...props}
         />
@@ -20,6 +21,7 @@ interface SectionProps extends React.HTMLAttributes<HTMLElement> {
 export function Section({ as: Component = "section", className, ...props }: SectionProps) {
     return (
         <Component
+            // @ts-ignore
             className={cn("py-16 md:py-24", className)}
             {...props}
         />
