@@ -7,6 +7,7 @@ import { ThreeCanvas } from "@/components/visuals/three-canvas";
 import { ArrowRight, Mail } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { RoleRotator } from "@/components/ui/role-rotator";
+import { ServicesSection, SkillsSection, ClientsSection } from "@/components/ui/portfolio-sections";
 
 export default async function HomePage() {
   const supabase = await createClient();
@@ -36,35 +37,37 @@ export default async function HomePage() {
   return (
     <>
       {/* Hero Section */}
-      <Section className="relative pt-20 pb-20 md:pt-32 md:pb-32 overflow-hidden">
-        <div className="absolute right-0 md:-right-20 top-1/2 -translate-y-1/2 w-full h-[500px] md:w-1/2 opacity-40 md:opacity-60 pointer-events-none">
+      <Section className="relative h-screen md:h-[calc(100vh-4rem)] flex items-center overflow-hidden bg-grid-pattern py-0 md:py-0">
+        <div className="absolute inset-0 bg-background/60 dark:bg-background/80 pointer-events-none" />
+
+        <div className="absolute right-0 md:-right-20 top-1/2 -translate-y-1/2 w-full h-[500px] md:w-1/2 opacity-30 md:opacity-50 pointer-events-none">
           <ThreeCanvas className="h-full w-full" />
         </div>
 
         <Container className="relative z-10">
-          <div className="max-w-3xl">
-            <h1 className="text-4xl font-extrabold tracking-tight sm:text-6xl lg:text-6xl">
-              <span className="block text-foreground">
+          <div className="max-w-4xl">
+            <h1 className="text-4xl font-black tracking-tight sm:text-6xl lg:text-7xl leading-[1.1]">
+              <span className="block text-foreground opacity-90">
                 I’m a
               </span>
 
               <RoleRotator />
 
-              <span className="block mt-2 text-foreground">
-                building <span className="text-[#4338CA] dark:text-[#5EEAD4]">
+              <span className="block mt-2 text-foreground leading-tight">
+                building <span className="text-gradient">
                   scalable web & AI-powered
                 </span>{" "}
                 products
               </span>
             </h1>
-            <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
+            <p className="mt-6 text-lg md:text-xl text-muted-foreground/80 leading-relaxed max-w-2xl">
               Merging high-performance engineering with state-of-the-art AI. I craft digital experiences that are fast, secure, and intelligent.
             </p>
-            <div className="mt-10 flex flex-wrap gap-4">
-              <Button asChild size="lg" className="bg-[#4338CA] hover:bg-[#3730A3] dark:bg-[#5EEAD4] dark:hover:bg-[#2DD4BF] dark:text-slate-900 text-white font-semibold px-8 shadow-lg shadow-indigo-500/20 dark:shadow-cyan-500/10">
+            <div className="mt-8 flex flex-wrap gap-6">
+              <Button asChild size="lg" className="bg-[#4338CA] hover:bg-[#3730A3] dark:bg-[#5EEAD4] dark:hover:bg-[#2DD4BF] dark:text-slate-900 text-white font-black uppercase tracking-widest px-10 h-14 shadow-2xl shadow-indigo-500/20 dark:shadow-cyan-500/20 transition-all hover:scale-105 active:scale-95">
                 <Link href="/projects">View Projects</Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900 group">
+              <Button asChild variant="outline" size="lg" className="border-indigo-100 dark:border-indigo-900/50 hover:bg-white dark:hover:bg-slate-900 font-black uppercase tracking-widest px-10 h-14 transition-all hover:scale-105 active:scale-95 group backdrop-blur-sm">
                 <Link href="/contact" className="gap-2">
                   <Mail size={18} className="text-muted-foreground group-hover:text-[#4338CA] dark:group-hover:text-[#5EEAD4]" />
                   Email Me
@@ -76,15 +79,16 @@ export default async function HomePage() {
       </Section>
 
       {/* Projects Section */}
-      <Section id="projects" className="bg-slate-50/80 dark:bg-slate-900/50 border-y border-slate-200/60 dark:border-slate-800/60">
-        <Container>
-          <div className="flex items-end justify-between mb-12">
+      <Section id="projects" className="bg-slate-50/50 dark:bg-slate-900/20 border-y border-slate-200/60 dark:border-slate-800/60 relative">
+        <div className="absolute inset-0 bg-grid-pattern opacity-[0.2] dark:opacity-[0.05] pointer-events-none" />
+        <Container className="relative z-10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <SectionHeader
               title="Featured Projects"
               subtitle="A selection of my best work in web development and AI."
-              className="mb-0"
+              className="mb-0 text-left"
             />
-            <Button asChild variant="ghost" className="hidden sm:flex group hover:text-[#4338CA] dark:hover:text-[#5EEAD4]">
+            <Button asChild variant="ghost" className="group text-indigo-600 dark:text-[#5EEAD4] font-black uppercase tracking-widest">
               <Link href="/projects" className="gap-2">
                 All Projects <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
@@ -92,29 +96,36 @@ export default async function HomePage() {
           </div>
 
           {featuredProjects.length > 0 ? (
-            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
               {featuredProjects.map((project: any) => (
                 <CardProject key={project.id} project={project} />
               ))}
             </div>
           ) : (
-            <div className="py-20 text-center text-muted-foreground italic border-2 border-dashed rounded-3xl">
+            <div className="py-24 text-center text-muted-foreground italic border border-dashed rounded-[2rem] bg-white/50 dark:bg-slate-900/50">
               No featured projects found. Add them in the admin panel.
             </div>
           )}
         </Container>
       </Section>
 
+      {/* Services Section */}
+      <ServicesSection />
+
+      {/* Skills Section */}
+      <SkillsSection />
+
       {/* Writing Section */}
-      <Section id="writing" className="bg-white dark:bg-background">
-        <Container>
-          <div className="flex items-end justify-between mb-12">
+      <Section id="writing" className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid-pattern opacity-[0.2] dark:opacity-[0.05] pointer-events-none" />
+        <Container className="relative z-10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <SectionHeader
               title="Latest Writing"
               subtitle="Essays, tutorials, and technical insights."
-              className="mb-0"
+              className="mb-0 text-left"
             />
-            <Button asChild variant="ghost" className="hidden sm:flex group hover:text-[#4338CA] dark:hover:text-[#5EEAD4]">
+            <Button asChild variant="ghost" className="group text-indigo-600 dark:text-[#5EEAD4] font-black uppercase tracking-widest">
               <Link href="/blog" className="gap-2">
                 Read Blog <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
@@ -122,18 +133,21 @@ export default async function HomePage() {
           </div>
 
           {latestPosts.length > 0 ? (
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
               {latestPosts.map((post: any) => (
                 <CardPost key={post.id} post={post} />
               ))}
             </div>
           ) : (
-            <div className="py-20 text-center text-muted-foreground italic border-2 border-dashed rounded-3xl">
+            <div className="py-24 text-center text-muted-foreground italic border border-dashed rounded-[2rem] bg-white/50 dark:bg-slate-900/50">
               No blog posts published yet.
             </div>
           )}
         </Container>
       </Section>
+
+      {/* Clients Section */}
+      <ClientsSection />
 
       <CTAStrip />
     </>

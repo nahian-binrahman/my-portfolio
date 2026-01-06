@@ -54,7 +54,7 @@ export default function RootLayout({
         <ThemeProvider>
           <PersonSchema />
           <Navbar />
-          <main className="flex-grow">
+          <main className="flex-grow bg-mesh-gradient">
             {children}
           </main>
           <Footer />

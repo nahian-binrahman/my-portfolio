@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { AboutHeader3D } from "@/components/about/about-header-3d";
 import Image from "next/image";
 import { Code2, Cpu, Globe2, Sparkles, Terminal } from "lucide-react";
+import { BrandIcon } from "@/components/ui/brand-icons";
 
 export default function AboutPage() {
     const skills = [
@@ -11,27 +12,27 @@ export default function AboutPage() {
         { category: "Infrastructure", items: ["Supabase", "PostgreSQL", "AWS", "Docker", "CI/CD"] }
     ];
 
-    const tools = ["VS Code", "Warp / iTerm", "Figma", "Postman", "Raycast", "CleanShot X"];
+    const tools = ["VS Code", "Figma", "Git", "Postman", "Supabase", "Vercel", "Docker", "Chrome DevTools", "Notion", "Slack"];
 
     return (
         <main className="relative">
             <AboutHeader3D />
 
-            <Section className="pt-32 pb-20">
+            <Section className="pt-24 pb-16 md:pt-32 md:pb-20">
                 <Container>
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
                         {/* Bio Section */}
-                        <div className="lg:col-span-7 space-y-8">
-                            <div className="space-y-4">
-                                <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight">
-                                    Crafting the future of <span className="text-indigo-600 dark:text-[#5EEAD4]">intelligent web systems.</span>
+                        <div className="lg:col-span-7 space-y-10">
+                            <div className="space-y-6">
+                                <h1 className="text-4xl md:text-5xl lg:text-7xl font-black tracking-tight leading-[1.1]">
+                                    Crafting the future of <span className="text-gradient">intelligent web systems.</span>
                                 </h1>
-                                <p className="text-xl text-muted-foreground leading-relaxed">
+                                <p className="text-lg md:text-xl text-muted-foreground/90 leading-relaxed max-w-2xl">
                                     I'm Nahian Bin Rahman, a Full-Stack Engineer specializing in building scalable web applications and AI-powered products. My work sits at the intersection of high-performance engineering and state-of-the-art AI.
                                 </p>
                             </div>
 
-                            <div className="prose prose-slate dark:prose-invert max-w-none text-lg leading-relaxed text-muted-foreground">
+                            <div className="prose prose-slate dark:prose-invert max-w-none text-base md:text-lg leading-relaxed text-muted-foreground/80 space-y-6">
                                 <p>
                                     With a background in both frontend artistry and robust backend architecture, I focus on creating digital experiences that are not only beautiful but also deeply functional. I believe that AI is not just a feature, but a foundational shift in how we build software.
                                 </p>
@@ -41,18 +42,22 @@ export default function AboutPage() {
                             </div>
 
                             {/* Skills Stack */}
-                            <div className="pt-8 space-y-8">
-                                <h2 className="text-2xl font-bold flex items-center gap-3">
-                                    <Cpu className="text-indigo-600 dark:text-[#5EEAD4]" />
-                                    Technical Arsenal
+                            <div className="pt-8 space-y-10">
+                                <h2 className="text-xl md:text-2xl font-black uppercase tracking-widest flex items-center gap-4">
+                                    <div className="h-px flex-1 bg-indigo-100 dark:bg-indigo-900/30" />
+                                    <div className="flex items-center gap-3">
+                                        <Cpu size={20} className="text-indigo-600 dark:text-[#5EEAD4]" />
+                                        <span>Arsenal</span>
+                                    </div>
+                                    <div className="h-px flex-1 bg-indigo-100 dark:bg-indigo-900/30" />
                                 </h2>
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-6">
                                     {skills.map((group) => (
-                                        <div key={group.category} className="space-y-4">
-                                            <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground/60">{group.category}</h3>
+                                        <div key={group.category} className="space-y-5">
+                                            <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground/60 border-l-2 border-indigo-500/30 pl-3">{group.category}</h3>
                                             <div className="flex flex-wrap gap-2">
                                                 {group.items.map(skill => (
-                                                    <Badge key={skill} variant="outline" className="border-indigo-100 dark:border-indigo-900/30 bg-indigo-50/30 dark:bg-indigo-950/20 text-indigo-700 dark:text-[#5EEAD4]">
+                                                    <Badge key={skill} variant="outline" className="font-bold border-indigo-100 dark:border-indigo-900/30 bg-indigo-50/10 dark:bg-indigo-950/20 text-indigo-700/80 dark:text-[#5EEAD4]/80 text-[10px] tracking-wider px-2.5 py-1">
                                                         {skill}
                                                     </Badge>
                                                 ))}
@@ -65,13 +70,13 @@ export default function AboutPage() {
 
                         {/* Side Info & Image */}
                         <div className="lg:col-span-5 space-y-12">
-                            <div className="relative aspect-square rounded-3xl overflow-hidden border-8 border-white dark:border-slate-800 shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500">
-                                <div className="absolute inset-0 bg-indigo-500/10 mix-blend-overlay z-10" />
+                            <div className="relative aspect-[4/5] max-w-[90%] sm:max-w-[80%] lg:max-w-full mx-auto rounded-[2.5rem] overflow-hidden border-8 border-white dark:border-slate-800 shadow-2xl lg:rotate-2 hover:rotate-0 transition-transform duration-500 glass-card">
+                                <div className="absolute inset-0 bg-indigo-500/5 mix-blend-overlay z-10" />
                                 <Image
                                     src="/profile-pic.png"
                                     alt="Nahian Bin Rahman"
                                     fill
-                                    className="object-cover"
+                                    className="object-cover object-top"
                                 />
                             </div>
 
@@ -82,8 +87,8 @@ export default function AboutPage() {
                                 </h3>
                                 <div className="flex flex-wrap gap-3">
                                     {tools.map(tool => (
-                                        <span key={tool} className="inline-flex items-center gap-2 px-3 py-1 bg-white dark:bg-slate-800 rounded-lg text-sm font-medium shadow-sm border border-slate-100 dark:border-slate-700">
-                                            <Sparkles size={12} className="text-amber-500" />
+                                        <span key={tool} className="inline-flex items-center gap-2.5 px-3 py-1.5 bg-white dark:bg-slate-800 rounded-lg text-sm font-medium shadow-sm border border-slate-100 dark:border-slate-700 hover:border-indigo-200 dark:hover:border-indigo-900/50 transition-colors group/tool">
+                                            <BrandIcon name={tool} className="size-4 text-slate-500 group-hover/tool:text-indigo-600 dark:group-hover/tool:text-[#5EEAD4] transition-colors" />
                                             {tool}
                                         </span>
                                     ))}
