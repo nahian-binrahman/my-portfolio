@@ -1,7 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
 
 export async function GET() {
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://nahian.dev";
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://nahianbinrahman.com";
     const supabase = await createClient();
 
     if (!supabase) {
