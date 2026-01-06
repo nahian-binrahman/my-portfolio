@@ -2,6 +2,7 @@ import { Container, Section, SectionHeader } from "./structure";
 import { Badge } from "./badge";
 import { Card, CardHeader, CardTitle, CardContent } from "./card";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 // --- Section 1: Services & Solutions ---
 
@@ -160,11 +161,30 @@ export function SkillsSection() {
 // --- Section 3: Clients & Partners ---
 
 const clients = [
-    { name: "Bangladesh Navy - BNS Issa Khan", logo: "BN" },
-    { name: "Epic Health Care Ltd.", logo: "EH" },
-    { name: "SL Health Care & Medical Technology Institute", logo: "SL" },
-    { name: "Xinxiang Vic Science & Education Co., Ltd", logo: "XV" },
-    { name: "Amar Desh", logo: "AD" },
+    {
+        name: "Bangladesh Navy - BNS Issa Khan",
+        logo: "BN",
+        image: "/clients/navy-logo.png"
+    },
+    {
+        name: "Epic Health Care Ltd.",
+        logo: "EH",
+        image: "/clients/epic-logo.jpg"
+    },
+    {
+        name: "SL Health Care & Medical Technology Institute",
+        logo: "SL"
+    },
+    {
+        name: "Xinxiang Vic Science & Education Co., Ltd",
+        logo: "XV",
+        image: "/clients/vic-science-logo.jpg"
+    },
+    {
+        name: "Amar Desh",
+        logo: "AD",
+        image: "/clients/amar-desh-logo.jpg"
+    },
 ];
 
 export function ClientsSection() {
@@ -184,10 +204,23 @@ export function ClientsSection() {
                             key={index}
                             className="group flex flex-col items-center gap-6 transition-all duration-500 hover:-translate-y-2"
                         >
-                            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-[2rem] glass-card flex items-center justify-center text-2xl font-black text-slate-400 dark:text-slate-600 group-hover:border-indigo-500 dark:group-hover:border-[#5EEAD4] group-hover:text-indigo-600 dark:group-hover:text-[#5EEAD4] transition-all shadow-xl group-hover:shadow-indigo-500/10 dark:group-hover:shadow-[#5EEAD4]/10">
-                                {client.logo}
+                            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white flex items-center justify-center overflow-hidden border border-slate-200 dark:border-slate-800 transition-all shadow-xl group-hover:shadow-indigo-500/10 dark:group-hover:shadow-[#5EEAD4]/10 group-hover:border-indigo-500 dark:group-hover:border-[#5EEAD4]">
+                                {client.image ? (
+                                    <div className="relative w-full h-full p-4">
+                                        <Image
+                                            src={client.image}
+                                            alt={client.name}
+                                            fill
+                                            className="object-contain transition-all duration-500 p-2"
+                                        />
+                                    </div>
+                                ) : (
+                                    <span className="text-2xl font-black text-slate-400 dark:text-slate-600 group-hover:text-indigo-600 dark:group-hover:text-[#5EEAD4]">
+                                        {client.logo}
+                                    </span>
+                                )}
                             </div>
-                            <span className="text-sm font-black uppercase tracking-widest text-slate-500 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-slate-200 transition-colors text-center max-w-[160px] leading-relaxed">
+                            <span className="text-xs sm:text-sm font-black uppercase tracking-widest text-slate-500 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-slate-200 transition-colors text-center max-w-[160px] leading-relaxed">
                                 {client.name}
                             </span>
                         </div>

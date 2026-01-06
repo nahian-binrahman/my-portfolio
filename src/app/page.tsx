@@ -40,13 +40,16 @@ export default async function HomePage() {
       <Section className="relative h-screen md:h-[calc(100vh-4rem)] flex items-center overflow-hidden bg-grid-pattern py-0 md:py-0">
         <div className="absolute inset-0 bg-background/60 dark:bg-background/80 pointer-events-none" />
 
-        <div className="absolute right-0 md:-right-20 top-1/2 -translate-y-1/2 w-full h-[500px] md:w-1/2 opacity-30 md:opacity-50 pointer-events-none">
-          <ThreeCanvas className="h-full w-full" />
+        {/* 3D Background - Always visible, centered on mobile/right-aligned on desktop */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <div className="absolute right-1/2 translate-x-1/2 md:right-0 md:translate-x-0 md:-right-20 top-1/2 -translate-y-1/2 w-full md:w-1/2 h-[600px] opacity-40 md:opacity-50">
+            <ThreeCanvas className="h-full w-full" />
+          </div>
         </div>
 
-        <Container className="relative z-10">
+        <Container className="relative z-10 pt-20 pb-12">
           <div className="max-w-4xl">
-            <h1 className="text-4xl font-black tracking-tight sm:text-6xl lg:text-7xl leading-[1.1]">
+            <h1 className="text-3xl font-black tracking-tight sm:text-5xl lg:text-6xl leading-[1.1]">
               <span className="block text-foreground opacity-90">
                 I’m a
               </span>
@@ -60,16 +63,16 @@ export default async function HomePage() {
                 products
               </span>
             </h1>
-            <p className="mt-6 text-lg md:text-xl text-muted-foreground/80 leading-relaxed max-w-2xl">
+            <p className="mt-6 text-base md:text-lg text-muted-foreground/80 leading-relaxed max-w-2xl">
               Merging high-performance engineering with state-of-the-art AI. I craft digital experiences that are fast, secure, and intelligent.
             </p>
-            <div className="mt-8 flex flex-wrap gap-6">
-              <Button asChild size="lg" className="bg-[#4338CA] hover:bg-[#3730A3] dark:bg-[#5EEAD4] dark:hover:bg-[#2DD4BF] dark:text-slate-900 text-white font-black uppercase tracking-widest px-10 h-14 shadow-2xl shadow-indigo-500/20 dark:shadow-cyan-500/20 transition-all hover:scale-105 active:scale-95">
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Button asChild size="lg" className="bg-[#4338CA] hover:bg-[#3730A3] dark:bg-[#5EEAD4] dark:hover:bg-[#2DD4BF] dark:text-slate-900 text-white font-black uppercase tracking-widest px-8 h-12 shadow-2xl shadow-indigo-500/20 dark:shadow-cyan-500/20 transition-all hover:scale-105 active:scale-95 text-xs">
                 <Link href="/projects">View Projects</Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="border-indigo-100 dark:border-indigo-900/50 hover:bg-white dark:hover:bg-slate-900 font-black uppercase tracking-widest px-10 h-14 transition-all hover:scale-105 active:scale-95 group backdrop-blur-sm">
+              <Button asChild variant="outline" size="lg" className="border-indigo-100 dark:border-indigo-900/50 hover:bg-white dark:hover:bg-slate-900 font-black uppercase tracking-widest px-8 h-12 transition-all hover:scale-105 active:scale-95 group backdrop-blur-sm text-xs">
                 <Link href="/contact" className="gap-2">
-                  <Mail size={18} className="text-muted-foreground group-hover:text-[#4338CA] dark:group-hover:text-[#5EEAD4]" />
+                  <Mail size={16} className="text-muted-foreground group-hover:text-[#4338CA] dark:group-hover:text-[#5EEAD4]" />
                   Email Me
                 </Link>
               </Button>

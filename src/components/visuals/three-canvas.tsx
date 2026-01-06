@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import { Skeleton } from "@/components/ui/skeleton";
 
 // Dynamically import the Scene component (R3F) with SSR disabled
-const Scene = dynamic(() => import("./hero-blob").then(mod => mod.Scene), {
+const Scene = dynamic<{ isMobile: boolean }>(() => import("./hero-blob").then(mod => mod.Scene), {
     ssr: false,
     loading: () => <FallbackVisual />,
 });
@@ -34,30 +34,29 @@ function FallbackVisual() {
 }
 
 export function ThreeCanvas({ className }: { className?: string }) {
+    const [isMobile, setIsMobile] = useState<boolean>(false);
     const [isEnabled, setIsEnabled] = useState<boolean | null>(null);
 
     useEffect(() => {
-        // Check for performance/device-based disabling
-        const checkPerformance = () => {
-            const isSmallScreen = window.innerWidth < 768;
+        const checkDevice = () => {
+            const isSmall = window.innerWidth < 768;
             const isReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-            const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
 
-            // Disable 3D on small screens, touch devices, or if the user prefers reduced motion
-            setIsEnabled(!isSmallScreen && !isReducedMotion && !isTouchDevice);
+            setIsMobile(isSmall);
+            // Only disable if user explicitly prefers reduced motion
+            setIsEnabled(!isReducedMotion);
         };
 
-        checkPerformance();
-        window.addEventListener("resize", checkPerformance);
-        return () => window.removeEventListener("resize", checkPerformance);
+        checkDevice();
+        window.addEventListener("resize", checkDevice);
+        return () => window.removeEventListener("resize", checkDevice);
     }, []);
 
-    // Use null initial state to avoid hydration mismatch
     if (isEnabled === null) return <div className={className} />;
 
     return (
         <div className={className} style={{ height: "500px", minHeight: "500px" }}>
-            {isEnabled ? <Scene /> : <FallbackVisual />}
+            {isEnabled ? <Scene isMobile={isMobile} /> : <FallbackVisual />}
         </div>
     );
 }

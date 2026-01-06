@@ -158,7 +158,7 @@
   }
 
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-violet-600 to-cyan-500 dark:from-[#5EEAD4] dark:via-cyan-400 dark:to-indigo-400;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-cyan-500 to-indigo-600 dark:from-[#5EEAD4] dark:via-indigo-400 dark:to-[#5EEAD4];
   }
 
   .animate-slow-spin {

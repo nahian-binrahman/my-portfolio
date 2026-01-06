@@ -174,9 +174,103 @@ function NeuralNetwork({ isHovered }: { isHovered: boolean }) {
 }
 
 /**
+ * Mobile-optimized Neural Drift Component
+ * Purely dots and lines, no core, high performance
+ */
+function NeuralDrift() {
+    const { resolvedTheme } = useTheme();
+    const groupRef = useRef<THREE.Group>(null);
+
+    const colors = useMemo(() => {
+        const isDark = resolvedTheme === "dark";
+        return {
+            lines: isDark ? "#5EEAD4" : "#4338CA",
+            opacity: isDark ? 0.15 : 0.25,
+            size: isDark ? 0.04 : 0.05,
+        };
+    }, [resolvedTheme]);
+
+    const { nodePositions, linePositions } = useMemo(() => {
+        const count = 30; // Further reduced for mobile
+        const nodes = new Float32Array(count * 3);
+        const lines: number[] = [];
+        const spread = 4;
+
+        for (let i = 0; i < count; i++) {
+            nodes[i * 3] = (Math.random() - 0.5) * spread;
+            nodes[i * 3 + 1] = (Math.random() - 0.5) * spread;
+            nodes[i * 3 + 2] = (Math.random() - 0.5) * spread;
+        }
+
+        for (let i = 0; i < count; i++) {
+            for (let j = i + 1; j < count; j++) {
+                const dx = nodes[i * 3] - nodes[j * 3];
+                const dy = nodes[i * 3 + 1] - nodes[j * 3 + 1];
+                const dz = nodes[i * 3 + 2] - nodes[j * 3 + 2];
+                const distSq = dx * dx + dy * dy + dz * dz;
+
+                if (distSq < 4) {
+                    lines.push(nodes[i * 3], nodes[i * 3 + 1], nodes[i * 3 + 2]);
+                    lines.push(nodes[j * 3], nodes[j * 3 + 1], nodes[j * 3 + 2]);
+                }
+            }
+        }
+
+        return {
+            nodePositions: nodes,
+            linePositions: new Float32Array(lines),
+        };
+    }, []);
+
+    useFrame((state) => {
+        if (groupRef.current) {
+            const t = state.clock.getElapsedTime();
+            groupRef.current.rotation.y = t * 0.05;
+            groupRef.current.rotation.x = Math.sin(t * 0.1) * 0.1;
+            // Added subtle position drift
+            groupRef.current.position.y = Math.sin(t * 0.4) * 0.15;
+            groupRef.current.position.x = Math.cos(t * 0.3) * 0.1;
+        }
+    });
+
+    return (
+        <group ref={groupRef}>
+            <Points positions={nodePositions} stride={3}>
+                <PointMaterial
+                    transparent
+                    color={colors.lines}
+                    size={colors.size}
+                    sizeAttenuation={true}
+                    depthWrite={false}
+                    blending={resolvedTheme === "dark" ? THREE.AdditiveBlending : THREE.NormalBlending}
+                />
+            </Points>
+
+            <lineSegments>
+                <bufferGeometry>
+                    <bufferAttribute
+                        attach="attributes-position"
+                        count={linePositions.length / 3}
+                        array={linePositions}
+                        itemSize={3}
+                        args={[linePositions, 3]}
+                    />
+                </bufferGeometry>
+                <lineBasicMaterial
+                    color={colors.lines}
+                    transparent
+                    opacity={colors.opacity}
+                    blending={resolvedTheme === "dark" ? THREE.AdditiveBlending : THREE.NormalBlending}
+                />
+            </lineSegments>
+        </group>
+    );
+}
+
+/**
  * Main Scene Export
  */
-export function Scene() {
+export function Scene({ isMobile }: { isMobile: boolean }) {
     const [isHovered, setIsHovered] = useState(false);
     const { resolvedTheme } = useTheme();
 
@@ -187,20 +281,20 @@ export function Scene() {
             onPointerOut={() => setIsHovered(false)}
         >
             <Canvas
-                dpr={[1, 1.5]} // Performance cap dpr
-                shadows={false} // Disable shadows for performance
+                dpr={[1, 1.2]} // Lower DPR for performance on mobile
+                shadows={false}
                 gl={{
                     antialias: true,
                     powerPreference: "high-performance",
                     alpha: true
                 }}
-                camera={{ position: [0, 0, 7.5], fov: 45 }}
+                camera={{ position: [0, 0, 6], fov: 45 }}
             >
                 <ambientLight intensity={resolvedTheme === "dark" ? 0.4 : 0.8} />
-                <pointLight position={[5, 5, 5]} intensity={1.5} color={resolvedTheme === "dark" ? "#5EEAD4" : "#4338CA"} />
+                <pointLight position={[5, 5, 5]} intensity={1} color={resolvedTheme === "dark" ? "#5EEAD4" : "#4338CA"} />
 
-                <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.4}>
-                    <NeuralNetwork isHovered={isHovered} />
+                <Float speed={isMobile ? 0.5 : 1.5} rotationIntensity={isMobile ? 0.2 : 0.3} floatIntensity={isMobile ? 0.2 : 0.4}>
+                    {isMobile ? <NeuralDrift /> : <NeuralNetwork isHovered={isHovered} />}
                 </Float>
             </Canvas>
         </div>

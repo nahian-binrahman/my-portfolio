@@ -65,8 +65,9 @@ export function Navbar() {
                                 {isActive && (
                                     <motion.div
                                         layoutId="nav-parallelogram"
-                                        className="absolute inset-0 -skew-x-[15deg] bg-indigo-600 dark:bg-[#5EEAD4] shadow-lg shadow-indigo-500/20 dark:shadow-[#5EEAD4]/30 rounded-[2px]"
-                                        initial={false}
+                                        initial={{ skewX: -12 }}
+                                        animate={{ skewX: -12 }}
+                                        className="absolute inset-0 bg-indigo-600 dark:bg-[#5EEAD4] shadow-lg shadow-indigo-500/20 dark:shadow-[#5EEAD4]/30 rounded-[2px]"
                                         transition={{
                                             type: "spring",
                                             stiffness: 400,
@@ -76,7 +77,7 @@ export function Navbar() {
                                 )}
 
                                 {/* Hover Slant Transition */}
-                                <div className="absolute inset-0 -skew-x-[15deg] bg-indigo-600 dark:bg-[#5EEAD4] opacity-0 group-hover:opacity-100 scale-x-50 group-hover:scale-x-100 transition-all duration-300 origin-center -z-10 rounded-[2px]" />
+                                <div className="absolute inset-0 -skew-x-[12deg] bg-indigo-600 dark:bg-[#5EEAD4] opacity-0 group-hover:opacity-100 scale-x-50 group-hover:scale-x-100 transition-all duration-300 origin-center -z-10 rounded-[2px]" />
 
                                 <span className="relative z-10 text-[10px] font-black uppercase tracking-widest leading-none">
                                     {item.name}
@@ -148,7 +149,7 @@ export function Navbar() {
                                             >
                                                 {/* Parallelogram Background */}
                                                 <div className={cn(
-                                                    "absolute inset-0 -skew-x-[12deg] rounded-lg transition-all duration-300",
+                                                    "absolute inset-0 -skew-x-[12deg] rounded-lg transition-all duration-300 origin-center",
                                                     isActive
                                                         ? "bg-indigo-600 dark:bg-[#5EEAD4] shadow-xl shadow-indigo-500/20"
                                                         : "bg-slate-100 dark:bg-slate-900 border border-slate-200/50 dark:border-slate-800/50"
