@@ -27,6 +27,17 @@ export function Footer() {
                         </ul>
                     </div>
                     <div>
+                        <h3 className="text-sm font-semibold uppercase tracking-wider">Head Office</h3>
+                        <div className="mt-4 space-y-2 text-sm text-muted-foreground">
+                            <p>L-10, Brainwire</p>
+                            <p>Software Technology Park</p>
+                            <p>Agrabad, Chattogram, Bangladesh</p>
+                            <p className="mt-4 font-bold text-indigo-600 dark:text-[#5EEAD4]">
+                                +880 1777 298484
+                            </p>
+                        </div>
+                    </div>
+                    <div>
                         <h3 className="text-sm font-semibold uppercase tracking-wider">Connect</h3>
                         <div className="mt-4">
                             <SocialLinks />

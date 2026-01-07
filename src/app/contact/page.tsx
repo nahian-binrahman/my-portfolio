@@ -47,9 +47,15 @@ export default function ContactPage() {
                                     <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
                                     Currently open to: Full-time / Contract / Consulting
                                 </div>
-                                <div className="flex items-center gap-4 p-4 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-800/60 font-medium">
-                                    <div className="h-2 w-2 rounded-full bg-indigo-500" />
-                                    Working from: Remote / Dhaka (UTC+6)
+                                <div className="flex items-start gap-4 p-5 rounded-2xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-800/60 font-medium group transition-all hover:bg-white dark:hover:bg-slate-900">
+                                    <div className="h-5 w-5 rounded-full bg-indigo-500/10 flex items-center justify-center mt-0.5">
+                                        <div className="h-2 w-2 rounded-full bg-indigo-500" />
+                                    </div>
+                                    <div className="space-y-1">
+                                        <div className="text-xs font-extrabold uppercase tracking-widest text-muted-foreground/60">Head Office</div>
+                                        <div className="text-sm">L-10, Brainwire, Software Technology Park, Agrabad, Chattogram, Bangladesh</div>
+                                        <div className="text-sm font-bold text-indigo-600 dark:text-[#5EEAD4] pt-2">+880 1777 298484</div>
+                                    </div>
                                 </div>
                             </div>
 
