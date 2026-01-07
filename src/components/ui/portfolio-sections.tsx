@@ -84,71 +84,119 @@ export function ServicesSection() {
     );
 }
 
+import {
+    Code2,
+    BrainCircuit,
+    Rocket,
+    Database,
+    Layers,
+    Workflow,
+    Truck,
+    MonitorSmartphone,
+    Cloud
+} from "lucide-react";
+
 // --- Section 2: Engineering Skill Stack ---
 
 const skillGroups = [
     {
         title: "Full-Stack Engineering",
+        icon: Code2,
         skills: ["Next.js", "React", "Django", "REST API", "PostgreSQL"],
     },
     {
         title: "AI & LLM Engineering",
+        icon: BrainCircuit,
         skills: ["LLM APIs", "RAG Systems", "Prompt Engineering", "AI Automation"],
     },
     {
-        title: "SaaS & Product Engineering",
-        skills: ["Multi-Tenant SaaS", "Auth & Roles", "Subscriptions", "Admin Dashboards"],
+        title: "SaaS & Product",
+        icon: Rocket,
+        skills: ["Multi-Tenant", "Auth & Roles", "Subscriptions", "Dashboards"],
     },
     {
         title: "Backend & Systems",
-        skills: ["API Design", "Business Logic", "Background Jobs", "Webhooks"],
+        icon: Layers,
+        skills: ["API Design", "Auth", "Background Jobs", "Webhooks"],
     },
     {
-        title: "Database & Data Modeling",
-        skills: ["PostgreSQL", "Schema Design", "RLS", "Performance Optimization"],
+        title: "Data & Persistence",
+        icon: Database,
+        skills: ["PostgreSQL", "Supabase", "Redis", "Schema Design"],
     },
     {
-        title: "Automation & Integrations",
-        skills: ["Workflow Automation", "Third-Party APIs", "Data Pipelines"],
+        title: "Automation",
+        icon: Workflow,
+        skills: ["Workflows", "Pipelines", "Third-Party APIs", "Integrations"],
     },
     {
-        title: "Supply Chain Systems",
-        skills: ["Inventory", "RFQ", "Order Management", "Operations Dashboards"],
+        title: "Supply Chain Stack",
+        icon: Truck,
+        skills: ["Inventory", "RFQ", "Procurement", "Operations"],
     },
     {
-        title: "Frontend & UI Engineering",
-        skills: ["Tailwind CSS", "Shadcn UI", "HTMX", "Responsive UI"],
+        title: "Frontend & UI",
+        icon: MonitorSmartphone,
+        skills: ["Tailwind", "Shadcn", "Framer Motion", "Responsive"],
     },
     {
-        title: "Cloud & Deployment",
-        skills: ["Vercel", "Supabase", "CI/CD", "Production Deployment"],
+        title: "Cloud & DevOps",
+        icon: Cloud,
+        skills: ["Vercel", "Supabase", "CI/CD", "Production Ops"],
     },
 ];
 
 export function SkillsSection() {
     return (
-        <Section id="skills" className="bg-slate-50/50 dark:bg-slate-900/20 border-y border-slate-200/60 dark:border-slate-800/60 relative">
+        <Section id="skills" className="bg-slate-50/50 dark:bg-slate-910/20 border-y border-slate-200/60 dark:border-slate-800/60 relative overflow-hidden">
             <div className="absolute inset-0 bg-grid-pattern opacity-[0.1] dark:opacity-[0.03] pointer-events-none" />
+
             <Container className="relative z-10">
                 <SectionHeader
                     title="Engineering Skill Stack"
                     subtitle="A comprehensive toolkit focused on performance, scalability, and modern AI integration."
+                    className="max-w-3xl"
                 />
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 gap-x-16">
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
                     {skillGroups.map((group, index) => (
-                        <div key={index} className="space-y-5">
-                            <h3 className="text-xs font-black uppercase tracking-[0.2em] text-indigo-600 dark:text-[#5EEAD4] border-l-2 border-indigo-500 dark:border-[#5EEAD4] pl-4">
-                                {group.title}
-                            </h3>
-                            <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-slate-700 dark:text-slate-300">
-                                {group.skills.map((skill, i) => (
-                                    <span key={skill} className="flex items-center text-[15px] font-bold tracking-tight">
-                                        {skill}
-                                        {i < group.skills.length - 1 && (
-                                            <span className="ml-3 text-slate-300 dark:text-slate-700 opacity-50">•</span>
+                        <div
+                            key={index}
+                            className={cn(
+                                "group relative p-8 rounded-[2rem] transition-all duration-300",
+                                "bg-white dark:bg-zinc-900/50 border border-slate-200/60 dark:border-zinc-800/50",
+                                "hover:shadow-2xl hover:shadow-indigo-500/10 dark:hover:shadow-indigo-500/5 hover:-translate-y-1"
+                            )}
+                        >
+                            {/* Icon & Title Header */}
+                            <div className="flex items-center gap-4 mb-8">
+                                <div className="p-3 rounded-2xl bg-indigo-50 dark:bg-indigo-950/30 text-indigo-600 dark:text-[#5EEAD4] group-hover:scale-110 transition-transform duration-300">
+                                    <group.icon size={22} strokeWidth={2.5} />
+                                </div>
+                                <h3 className="text-sm font-black uppercase tracking-[0.15em] text-slate-900 dark:text-slate-100">
+                                    {group.title}
+                                </h3>
+                            </div>
+
+                            {/* Skills Tag Cloud */}
+                            <div className="flex flex-wrap gap-2">
+                                {group.skills.map((skill) => (
+                                    <span
+                                        key={skill}
+                                        className={cn(
+                                            "px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-200",
+                                            "bg-slate-50 dark:bg-zinc-800/50 text-slate-500 dark:text-zinc-400",
+                                            "group-hover:bg-indigo-50 group-hover:text-indigo-600 dark:group-hover:bg-indigo-900/20 dark:group-hover:text-[#5EEAD4]"
                                         )}
+                                    >
+                                        {skill}
                                     </span>
                                 ))}
+                            </div>
+
+                            {/* Decorative Accent */}
+                            <div className="absolute top-8 right-8 w-8 h-8 opacity-[0.03] dark:opacity-[0.05] group-hover:opacity-[0.1] transition-opacity">
+                                <group.icon size={32} />
                             </div>
                         </div>
                     ))}
@@ -172,8 +220,10 @@ const clients = [
         image: "/clients/epic-logo.jpg"
     },
     {
-        name: "SL Health Care & Medical Technology Institute",
-        logo: "SL"
+        name: "National Skills Development Authority",
+        logo: "NSDA",
+        image: "/clients/nsda-logo.png",
+        padding: "p-4 m-3"
     },
     {
         name: "Xinxiang Vic Science & Education Co., Ltd",
@@ -204,14 +254,14 @@ export function ClientsSection() {
                             key={index}
                             className="group flex flex-col items-center gap-6 transition-all duration-500 hover:-translate-y-2"
                         >
-                            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white flex items-center justify-center overflow-hidden border border-slate-200 dark:border-slate-800 transition-all shadow-xl group-hover:shadow-indigo-500/10 dark:group-hover:shadow-[#5EEAD4]/10 group-hover:border-indigo-500 dark:group-hover:border-[#5EEAD4]">
+                            <div className="w-20 h-20 sm:w-24 sm:h-24 bg-white rounded-full flex items-center justify-center overflow-hidden border border-slate-200 dark:border-slate-800 transition-all shadow-xl group-hover:shadow-indigo-500/10 dark:group-hover:shadow-[#5EEAD4]/10 group-hover:border-indigo-500 dark:group-hover:border-[#5EEAD4]">
                                 {client.image ? (
-                                    <div className="relative w-full h-full p-4">
+                                    <div className={cn("relative w-full h-full", client.padding || "p-1")}>
                                         <Image
                                             src={client.image}
                                             alt={client.name}
                                             fill
-                                            className="object-contain transition-all duration-500 p-2"
+                                            className="object-contain transition-all duration-500"
                                         />
                                     </div>
                                 ) : (

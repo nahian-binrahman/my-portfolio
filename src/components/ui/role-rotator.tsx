@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
+import { cn } from "@/lib/utils";
 
 const ROLES = [
     "Full Stack Software Engineer",
@@ -9,7 +10,7 @@ const ROLES = [
     "Supply Chain System Engineer",
 ];
 
-export function RoleRotator() {
+export function RoleRotator({ className }: { className?: string }) {
     const [index, setIndex] = useState(0);
 
     useEffect(() => {
@@ -28,7 +29,10 @@ export function RoleRotator() {
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: -24, opacity: 0 }}
                     transition={{ duration: 0.45, ease: "easeOut" }}
-                    className="absolute left-0 top-0 font-semibold text-[#4338CA] dark:text-[#5EEAD4] whitespace-nowrap pr-10"
+                    className={cn(
+                        "absolute left-0 top-0 font-medium text-[#4338CA] dark:text-[#5EEAD4] whitespace-nowrap pr-10",
+                        className
+                    )}
                 >
                     {ROLES[index]}
                 </motion.span>

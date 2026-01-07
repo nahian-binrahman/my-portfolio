@@ -49,12 +49,12 @@ export default async function HomePage() {
 
         <Container className="relative z-10 pt-20 pb-12">
           <div className="max-w-4xl">
-            <h1 className="text-3xl font-black tracking-tight sm:text-5xl lg:text-6xl leading-[1.1]">
+            <h1 className="text-2xl font-black tracking-tight sm:text-4xl lg:text-5xl leading-[1.1]">
               <span className="block text-foreground opacity-90">
                 I’m a
               </span>
 
-              <RoleRotator />
+              <RoleRotator className="text-3xl sm:text-5xl lg:text-6xl font-black" />
 
               <span className="block mt-2 text-foreground leading-tight">
                 building <span className="text-gradient">
@@ -63,7 +63,7 @@ export default async function HomePage() {
                 products
               </span>
             </h1>
-            <p className="mt-6 text-base md:text-lg text-muted-foreground/80 leading-relaxed max-w-2xl">
+            <p className="mt-6 text-sm md:text-base text-muted-foreground/80 leading-relaxed max-w-2xl">
               Merging high-performance engineering with state-of-the-art AI. I craft digital experiences that are fast, secure, and intelligent.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">

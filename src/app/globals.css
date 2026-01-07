@@ -44,10 +44,12 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+  --floating-safe-width: var(--floating-safe-zone);
 }
 
 :root {
   --radius: 0.625rem;
+  --floating-safe-zone: 80px;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);

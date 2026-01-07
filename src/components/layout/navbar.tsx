@@ -16,7 +16,6 @@ const navItems = [
     { name: "Blog", href: "/blog" },
     { name: "Speaking", href: "/speaking" },
     { name: "Services", href: "/services" },
-    { name: "Resume", href: "/resume" },
     { name: "Contact", href: "/contact" },
 ];
 
@@ -41,15 +40,15 @@ export function Navbar() {
 
     return (
         <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
-            <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
-                <div className="flex items-center gap-2 z-50">
-                    <Link href="/" className="text-xl font-bold tracking-tight text-[#4338CA] dark:text-[#5EEAD4]">
+            <div className="container mx-auto flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8">
+                <div className="flex items-center gap-3 z-50">
+                    <Link href="/" className="text-2xl font-bold tracking-tight text-[#4338CA] dark:text-[#5EEAD4]">
                         Nahian B. Rahman
                     </Link>
                 </div>
 
                 {/* Desktop Navigation */}
-                <nav className="hidden md:flex items-center gap-1 px-2">
+                <nav className="hidden md:flex items-center gap-2 px-2">
                     {navItems.map((item) => {
                         const isActive = pathname === item.href;
                         return (
@@ -57,7 +56,7 @@ export function Navbar() {
                                 key={item.href}
                                 href={item.href}
                                 className={cn(
-                                    "group relative px-4 py-2 transition-all duration-300",
+                                    "group relative px-5 py-2.5 transition-all duration-300",
                                     isActive ? "text-white dark:text-slate-900" : "text-muted-foreground hover:text-white dark:hover:text-slate-900 transition-none"
                                 )}
                             >
@@ -79,7 +78,7 @@ export function Navbar() {
                                 {/* Hover Slant Transition */}
                                 <div className="absolute inset-0 -skew-x-[12deg] bg-indigo-600 dark:bg-[#5EEAD4] opacity-0 group-hover:opacity-100 scale-x-50 group-hover:scale-x-100 transition-all duration-300 origin-center -z-10 rounded-[2px]" />
 
-                                <span className="relative z-10 text-[10px] font-black uppercase tracking-widest leading-none">
+                                <span className="relative z-10 text-[13px] font-black uppercase tracking-widest leading-none">
                                     {item.name}
                                 </span>
                             </Link>
@@ -91,10 +90,10 @@ export function Navbar() {
                     <ThemeToggle />
                     <Link
                         href="/contact"
-                        className="group relative px-6 py-2.5 transition-all duration-300 active:scale-95"
+                        className="group relative px-7 py-3 transition-all duration-300 active:scale-95"
                     >
                         <div className="absolute inset-0 bg-[#4338CA] dark:bg-[#5EEAD4] shadow-xl shadow-indigo-500/10 dark:shadow-[#5EEAD4]/20 group-hover:shadow-[rgba(67,56,202,0.3)] dark:group-hover:shadow-[rgba(94,234,212,0.3)] group-hover:brightness-110 transition-all rounded-xl" />
-                        <span className="relative z-10 text-[10px] font-black uppercase tracking-widest text-white dark:text-slate-900 whitespace-nowrap">
+                        <span className="relative z-10 text-[13px] font-black uppercase tracking-widest text-white dark:text-slate-900 whitespace-nowrap">
                             Hire Me
                         </span>
                     </Link>
@@ -108,7 +107,7 @@ export function Navbar() {
                         className="p-2 -mr-2 text-muted-foreground hover:text-foreground transition-colors"
                         aria-label="Toggle menu"
                     >
-                        {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                        {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
                     </button>
                 </div>
             </div>
@@ -120,7 +119,7 @@ export function Navbar() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 top-[64px] z-40 bg-background/98 backdrop-blur-2xl md:hidden flex flex-col"
+                        className="fixed inset-0 top-[80px] z-40 bg-background/98 backdrop-blur-2xl md:hidden flex flex-col"
                     >
                         <div className="absolute inset-0 bg-grid-pattern opacity-[0.05] pointer-events-none" />
 
@@ -156,7 +155,7 @@ export function Navbar() {
                                                 )} />
 
                                                 <div className="relative z-10 flex items-center justify-between">
-                                                    <span className="text-sm font-black uppercase tracking-[0.2em]">
+                                                    <span className="text-base font-black uppercase tracking-[0.2em]">
                                                         {item.name}
                                                     </span>
                                                     <ArrowRight size={18} className={cn(
@@ -182,7 +181,7 @@ export function Navbar() {
                                     className="group relative block w-full px-8 py-5 text-center active:scale-95 transition-all"
                                 >
                                     <div className="absolute inset-0 bg-indigo-600 dark:bg-[#5EEAD4] shadow-2xl shadow-indigo-500/30 dark:shadow-cyan-500/20 rounded-2xl" />
-                                    <span className="relative z-10 text-xs font-black uppercase tracking-[0.3em] text-white dark:text-slate-900">
+                                    <span className="relative z-10 text-sm font-black uppercase tracking-[0.3em] text-white dark:text-slate-900">
                                         Hire Me Now
                                     </span>
                                 </Link>

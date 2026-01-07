@@ -43,6 +43,9 @@ export const metadata: Metadata = {
   },
 };
 
+import { FloatingContactActions } from "@/components/layout/floating-contact-actions";
+import { SafeZoneWrapper } from "@/components/layout/safe-zone-wrapper";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -52,12 +55,15 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} font-sans antialiased min-h-screen flex flex-col`}>
         <ThemeProvider>
-          <PersonSchema />
-          <Navbar />
-          <main className="flex-grow bg-mesh-gradient">
-            {children}
-          </main>
-          <Footer />
+          <SafeZoneWrapper>
+            <PersonSchema />
+            <Navbar />
+            <main className="flex-grow bg-mesh-gradient">
+              {children}
+            </main>
+            <Footer />
+            <FloatingContactActions />
+          </SafeZoneWrapper>
           <Toaster position="top-center" richColors />
         </ThemeProvider>
       </body>
