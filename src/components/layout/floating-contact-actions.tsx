@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useAnimation, useMotionValueEvent } from "framer-motion";
 import { Mail, Linkedin, MessageCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
@@ -40,6 +40,20 @@ export function FloatingContactActions() {
     const pathname = usePathname();
     const isAdmin = pathname?.startsWith("/admin");
     const [showLabels, setShowLabels] = useState(false);
+    const controls = useAnimation();
+    const { scrollY } = useScroll();
+
+    // Scroll-triggered bounce effect
+    useMotionValueEvent(scrollY, "change", () => {
+        controls.start({
+            y: [-3, 0],
+            transition: {
+                type: "spring",
+                stiffness: 400,
+                damping: 10
+            }
+        });
+    });
 
     // Initial hint on mobile
     useEffect(() => {
@@ -64,7 +78,10 @@ export function FloatingContactActions() {
             "lg:w-[var(--floating-safe-width)] lg:bottom-12", // Desktop: Centered in safe zone
             "bottom-20 md:bottom-12" // Mobile: Extra bottom clearance to avoid covering tab bars/CTAs
         )}>
-            <div className="flex flex-col gap-3 pointer-events-auto items-center lg:w-full">
+            <motion.div
+                animate={controls}
+                className="flex flex-col gap-3 pointer-events-auto items-center lg:w-full"
+            >
                 {CONTACT_LINKS.map((link, index) => (
                     <motion.div
                         key={link.id}
@@ -117,7 +134,7 @@ export function FloatingContactActions() {
                         </a>
                     </motion.div>
                 ))}
-            </div>
+            </motion.div>
         </div>
     );
 }
