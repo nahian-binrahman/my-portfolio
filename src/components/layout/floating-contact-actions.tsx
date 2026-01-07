@@ -74,7 +74,7 @@ export function FloatingContactActions() {
 
     return (
         <div className={cn(
-            "fixed bottom-8 right-8 lg:right-0 z-[100] flex flex-col items-end gap-4 pointer-events-none",
+            "fixed bottom-8 right-3 lg:right-0 z-[100] flex flex-col items-end gap-4 pointer-events-none",
             "lg:w-[var(--floating-safe-width)] lg:bottom-12", // Desktop: Centered in safe zone
             "bottom-20 md:bottom-12" // Mobile: Extra bottom clearance to avoid covering tab bars/CTAs
         )}>
